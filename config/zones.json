@@ -1,0 +1,10 @@
+{
+  "rules": [
+    {"source_zone": "internet", "destination_zone": "dmz", "allowed_ports": [443]},
+    {"source_zone": "user", "destination_zone": "server", "allowed_ports": [443]},
+    {"source_zone": "server", "destination_zone": "database", "allowed_ports": [5432]},
+    {"source_zone": "management", "destination_zone": "server", "allowed_ports": [22, 3389, 5985, 5986]},
+    {"source_zone": "management", "destination_zone": "identity", "allowed_ports": [389, 636, 88, 464]},
+    {"source_zone": "server", "destination_zone": "identity", "allowed_ports": [88, 389, 636]}
+  ]
+}
