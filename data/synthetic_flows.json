@@ -1,0 +1,10 @@
+{
+  "flows": [
+    {"source_asset":"internet-client","source_zone":"internet","destination_asset":"web-01","destination_zone":"dmz","protocol":"tcp","port":443,"owner":"Digital Platform","internet_exposed":true},
+    {"source_asset":"web-01","source_zone":"server","destination_asset":"db-01","destination_zone":"database","protocol":"tcp","port":5432,"owner":"Digital Platform"},
+    {"source_asset":"admin-ws-01","source_zone":"management","destination_asset":"app-01","destination_zone":"server","protocol":"tcp","port":3389,"owner":"Infrastructure"},
+    {"source_asset":"user-ws-17","source_zone":"user","destination_asset":"db-01","destination_zone":"database","protocol":"tcp","port":5432,"owner":null},
+    {"source_asset":"internet-client","source_zone":"internet","destination_asset":"id-01","destination_zone":"identity","protocol":"tcp","port":636,"owner":"Identity","internet_exposed":true},
+    {"source_asset":"user-ws-22","source_zone":"user","destination_asset":"app-02","destination_zone":"server","protocol":"tcp","port":3389,"owner":"Operations"}
+  ]
+}
