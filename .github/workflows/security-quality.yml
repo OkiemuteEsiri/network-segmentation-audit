@@ -1,0 +1,36 @@
+name: security-quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile source
+        run: python -m compileall -q segmentation_audit tests
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: CLI smoke test
+        run: |
+          set +e
+          python -m segmentation_audit.cli --policy config/zones.json --flows data/synthetic_flows.json --output report.md
+          code=$?
+          test "$code" -eq 2
+      - name: Validate generated report
+        run: |
+          test -s report.md
+          grep -q "Network Segmentation Audit Report" report.md
+          grep -q "Remediation" report.md
